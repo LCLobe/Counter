@@ -6,16 +6,36 @@ export const ContextProvider = ({children}) => {
 
     //States
     const [seconds, setSeconds] = useState(0);
-    const [counterValue, setCounterValue] =useState(0);
-    const [counterState, setCounterState]=useState(true);
-    const [directionAscending, setdirectionAscending] =useState(true);
+    const [counterValue, setCounterValue] = useState(0);
+    const [counterState, setCounterState] = useState(true);
+    const [directionAscending, setdirectionAscending] = useState(true);
+    const [inputValue, setInputValue] = useState(0);
+    const [alarmState, setAlarmState] = useState(false);
 
     //Hooks
     const resetCounter = ()=>{
-        return setCounterValue(prev=>0);
+        setCounterValue(prev=>0);
+        setdirectionAscending(true);
     }
     const toggleCounterState = ()=>{
         setCounterState(prev => !prev);
+    }
+    const handlerInput = (event)=>{
+        setInputValue(prev=>event.target.value);
+    }
+    const handlerInputButton = ()=>{
+        setCounterValue(prev=>inputValue);
+        setdirectionAscending(prev=>false);
+        setCounterState(prev=>true);
+    }
+    const handlerEnterKey = (event)=>{
+        //setInputValue(prev=>event.target.value);
+        if (event.key === 'Enter') {
+            handlerInputButton();
+          }
+    }
+    const removeAlert = ()=>{
+        setAlarmState(false);
     }
 
     //Flux
@@ -23,7 +43,9 @@ export const ContextProvider = ({children}) => {
         seconds,
         counterValue,
         counterState,
-        directionAscending
+        directionAscending,
+        inputValue,
+        alarmState
     };
     const actions ={
         setSeconds,
@@ -31,7 +53,13 @@ export const ContextProvider = ({children}) => {
         setCounterState,
         setdirectionAscending,
         resetCounter,
-        toggleCounterState
+        toggleCounterState,
+        setInputValue,
+        handlerInput,
+        handlerInputButton,
+        setAlarmState,
+        handlerEnterKey,
+        removeAlert
     };
 
     

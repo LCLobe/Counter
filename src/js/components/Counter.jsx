@@ -1,14 +1,16 @@
 import React, {useMemo, useEffect} from "react";
 import useAppContext from "../store/Context.jsx";
 
+import Alert from "./Alert.jsx";
+
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 const Counter = ()=>{
 
     const {store, actions} = useAppContext();
-    const {seconds, counterValue, counterState, directionAscending} = store; 
-    const {setSeconds, setCounterValue} = actions;
+    const {seconds, counterValue, counterState, directionAscending, alarmState} = store; 
+    const {setSeconds, setCounterValue, setCounterState, setAlarmState} = actions;
 
     useEffect(()=>{
         const timer= setTimeout(()=>{
@@ -18,6 +20,13 @@ const Counter = ()=>{
 
     if (counterState && directionAscending) setCounterValue(prev=>prev+1);
     if (counterState && !directionAscending) setCounterValue(prev=>prev-1);
+
+    if (!directionAscending && counterValue == 0) {
+        //alert("Your time... is over.");
+        setAlarmState(true);
+        setCounterState(false);
+        setCounterValue(0);
+    }
 
     },[seconds]);  
     
@@ -34,16 +43,17 @@ const Counter = ()=>{
     //<h1><i className="fa-regular fa-clock-nine fa-spin">|</i></h1>
 
     return (
-        <div className="counter p-5">
-            
+        <>
+            <div className="counter p-5">
+            <h1><i className="far fa-clock fa-spin"></i></h1>
             {counter.map((element,index)=>{
                 return (
                     <h1 className="card" key={index}>{element}</h1>
                 )
             })}
-
-        </div>
-
+            </div>
+            {alarmState  && <Alert />}
+        </>
     )
 }
 
