@@ -6,13 +6,13 @@ export const ContextProvider = ({children}) => {
 
     //States
     const [seconds, setSeconds] = useState(0);
-    const [counterValue, setCounterlValue] =useState(0);
+    const [counterValue, setCounterValue] =useState(0);
     const [counterState, setCounterState]=useState(true);
     const [directionAscending, setdirectionAscending] =useState(true);
 
     //Hooks
     const resetCounter = ()=>{
-        return setCounterlValue(prev=>0);
+        return setCounterValue(prev=>0);
     }
     const toggleCounterState = ()=>{
         setCounterState(prev => !prev);
@@ -27,7 +27,7 @@ export const ContextProvider = ({children}) => {
     };
     const actions ={
         setSeconds,
-        setCounterlValue,
+        setCounterValue,
         setCounterState,
         setdirectionAscending,
         resetCounter,

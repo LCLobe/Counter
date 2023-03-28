@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, {useMemo, useEffect} from "react";
 import useAppContext from "../store/Context.jsx";
 
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,26 +7,26 @@ import useAppContext from "../store/Context.jsx";
 const Counter = ()=>{
 
     const {store, actions} = useAppContext();
-    const {seconds, directionAscending} = store; 
-    const {setSeconds} = actions;
+    const {seconds, counterValue, counterState, directionAscending} = store; 
+    const {setSeconds, setCounterValue} = actions;
 
-    if (directionAscending) {
+    useEffect(()=>{
         const timer= setTimeout(()=>{
             setSeconds((seconds)=>seconds+1);
             clearTimeout(timer);
-        },1000);    
-    } else {
-        const timer= setTimeout(()=>{
-            setSeconds((seconds)=>seconds-1);
-            clearTimeout(timer);
-        },1000);    
-    }
+        },1000);
+
+    if (counterState && directionAscending) setCounterValue(prev=>prev+1);
+    if (counterState && !directionAscending) setCounterValue(prev=>prev-1);
+
+    },[seconds]);  
+    
 
     const counter = useMemo(()=>{
-        const secondsString = String(seconds).padStart(6,"0"); 
+        const secondsString = String(counterValue).padStart(6,"0"); 
         const secondsArray = Array.from(secondsString);
         return secondsArray;
-    },[seconds]);
+    },[counterValue]);
 
     //<i class="fa-regular fa-clock-nine fa-spin fa-spin-reverse"></i>
     //<FontAwesomeIcon icon="fa-regular fa-clock-nine" spin />
