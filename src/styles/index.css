@@ -1,12 +1,19 @@
+body {
+    padding: 0%;
+}
+.counter{
+    background-color: black;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    vertical-align: middle;
+}
 
-/* 
-
-    You can write your own styles here...
-    
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
+.card{
+    width: 100px;
+    height: 100px;
+    border: solid slategray 2px;
+    border-radius: 20px;
+    vertical-align: middle;
+    font-size: 2rem;
+}
