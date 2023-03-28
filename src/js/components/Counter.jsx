@@ -1,19 +1,29 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useMemo} from "react";
+import useAppContext from "../store/Context.jsx";
 
-import ReactDOM from 'react-dom'
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 const Counter = ()=>{
 
-    const [seconds, setSeconds] = useState(0);
+    const {store, actions} = useAppContext();
+    const {seconds, directionAscending} = store; 
+    const {setSeconds} = actions;
 
-    const timer= setTimeout(()=>{
-        setSeconds((seconds)=>seconds+1);
-    },1000);
+    if (directionAscending) {
+        const timer= setTimeout(()=>{
+            setSeconds((seconds)=>seconds+1);
+            clearTimeout(timer);
+        },1000);    
+    } else {
+        const timer= setTimeout(()=>{
+            setSeconds((seconds)=>seconds-1);
+            clearTimeout(timer);
+        },1000);    
+    }
 
     const counter = useMemo(()=>{
-        const secondsString = String(seconds).padStart(6,"0");
+        const secondsString = String(seconds).padStart(6,"0"); 
         const secondsArray = Array.from(secondsString);
         return secondsArray;
     },[seconds]);
@@ -24,7 +34,7 @@ const Counter = ()=>{
     //<h1><i className="fa-regular fa-clock-nine fa-spin">|</i></h1>
 
     return (
-        <div className="counter">
+        <div className="counter p-5">
             
             {counter.map((element,index)=>{
                 return (

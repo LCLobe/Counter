@@ -1,6 +1,6 @@
 import React from "react";
 
-const Countdown = ()=> {
+const CountdownWithAlert = ()=> {
 
     return (
         <div className="input-group mb-3">
@@ -10,4 +10,4 @@ const Countdown = ()=> {
     )
 };
 
-export default Countdown;
+export default CountdownWithAlert;
