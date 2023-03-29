@@ -1,19 +1,27 @@
 body {
-    padding: 0%;
+    background-color: black;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 .counter{
     background-color: black;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     vertical-align: middle;
+    margin-bottom: 2rem;
 }
 
 .card{
-    width: 100px;
-    height: 100px;
+    height: 150px;
+    min-width: 100px ;
+    aspect-ratio: 9/13;
     border: solid slategray 2px;
     border-radius: 20px;
-    vertical-align: middle;
-    font-size: 2rem;
+    font-size: 6rem;
+    margin: 5px;
+    justify-content: center;
 }

@@ -9,7 +9,7 @@ const ButtonsFunctions = ()=>{
     const {counterState} = store;
 
     return (
-        <div className="button-functions p-5 bg-black d-flex justify-content-around">            
+        <div className="button-functions p-3 bg-black d-flex justify-content-around">            
             {counterState
                 ? <button className="myButton btn btn-outline-danger" onClick={toggleCounterState}>Stop</button>
                 : <button className="myButton btn btn-outline-success" onClick={toggleCounterState}>Resume</button>

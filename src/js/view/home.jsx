@@ -15,7 +15,7 @@ const Home = () => {
 	const {counterState, counterValue, counterDirection} = store;
 
 	return (
-		<div className="text-center container-fluid">
+		<div className="text-center container">
 			<ButtonsFunctions active={counterState} />
 			<Counter initNumber={counterValue} ascending={counterDirection}/>
 			<CountdownWithAlert />

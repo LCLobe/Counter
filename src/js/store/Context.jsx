@@ -36,6 +36,7 @@ export const ContextProvider = ({children}) => {
     }
     const removeAlert = ()=>{
         setAlarmState(false);
+        setdirectionAscending(true);
     }
 
     //Flux
